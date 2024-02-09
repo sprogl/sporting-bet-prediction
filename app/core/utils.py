@@ -4,7 +4,7 @@ import requests
 import io
 import datetime
 import joblib
-import config
+import core.config
 
 # Load scaler fromt the disk
 scaler = joblib.load(filename="archive/scaler.pkl")
@@ -46,14 +46,14 @@ def fetch():
     sess.close()
 
     # Put the downloaded data together
-    df_atp = pd.concat(df_list, axis=0).drop(labels=config.drop_list, axis=1)
+    df_atp = pd.concat(df_list, axis=0).drop(labels=core.config.drop_list, axis=1)
 
     # Cleanup the data
     df_atp["Winner"] = df_atp["Winner"].str.strip()
     df_atp["Loser"] = df_atp["Loser"].str.strip()
 
-    df_atp["Winner"] = df_atp["Winner"].replace(config.correction_list)
-    df_atp["Loser"] = df_atp["Loser"].replace(config.correction_list)
+    df_atp["Winner"] = df_atp["Winner"].replace(core.config.correction_list)
+    df_atp["Loser"] = df_atp["Loser"].replace(core.config.correction_list)
 
     df_atp["Best of"] = pd.to_numeric(
         df_atp["Best of"], errors="coerce", downcast="integer"
@@ -335,23 +335,23 @@ def get_advise(input: dict | pd.DataFrame, platform: str = "PS") -> pd.DataFrame
     if isinstance(input, dict):
         input = pd.DataFrame(input)
 
-    if set(config.features_list) - set(input.columns.tolist()):
+    if set(core.config.features_list) - set(input.columns.tolist()):
         raise ValueError(f"wrong input format")
 
-    X = input[config.features_list]
+    X = input[core.config.features_list]
 
     if platform == "PS":
         df_result = pd.DataFrame(
             {
-                "predict_P1_wins": model_svm.predict(X),
-                "certainty": np.absolute(2 * model_svm.predict_proba(X)[:, 1] - 1.0),
+                "predict_P1_wins": model_rfc.predict(X),
+                "certainty": np.absolute(2 * model_rfc.predict_proba(X)[:, 1] - 1.0),
             },
             index=X.index,
         )
         df_result["advise"] = df_result["predict_P1_wins"].replace(
             {True: "P1", False: "P2"}
         )
-        df_result.loc[df_result["certainty"] < 0.52, "advise"] = np.nan
+        df_result.loc[df_result["certainty"] < 0.62, "advise"] = np.nan
         return df_result[["advise", "predict_P1_wins", "certainty"]]
     elif platform == "B365":
         df_result = pd.DataFrame(
