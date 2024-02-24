@@ -1,0 +1,17 @@
+version: "3.3"
+
+services:
+  advise:
+    image: bet-api
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: ${CONTAINER_NAME:-bet-advise-engine}
+    restart: always
+    ports:
+      - 80:80
+    volumes:
+      - bet_data:/code/app/archive
+
+volumes:
+  bet_data:
