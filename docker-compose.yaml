@@ -2,11 +2,11 @@ version: "3.3"
 
 services:
   advise:
-    image: bet-api
+    image: tennis-bet-api
     build: 
       context: .
       dockerfile: Dockerfile
-    container_name: ${CONTAINER_NAME:-bet-advise-engine}
+    container_name: ${CONTAINER_NAME:-tennis-bet-advise-engine}
     restart: always
     ports:
       - 80:80
