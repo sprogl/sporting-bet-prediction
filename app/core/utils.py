@@ -4,16 +4,16 @@ import requests
 import io
 import datetime
 import joblib
-import core.config
+import app.core.config
 
 # Load scaler fromt the disk
-scaler = joblib.load(filename="archive/scaler.pkl")
+scaler = joblib.load(filename="app/archive/scaler.pkl")
 
 # Load svm model from disk
-model_svm = joblib.load(filename="archive/model_svm.pkl")
+model_svm = joblib.load(filename="app/archive/model_svm.pkl")
 
 # Load random forest model from disk
-model_rfc = joblib.load(filename="archive/model_rfc.pkl")
+model_rfc = joblib.load(filename="app/archive/model_rfc.pkl")
 
 
 def fetch():
@@ -46,14 +46,14 @@ def fetch():
     sess.close()
 
     # Put the downloaded data together
-    df_atp = pd.concat(df_list, axis=0).drop(labels=core.config.drop_list, axis=1)
+    df_atp = pd.concat(df_list, axis=0).drop(labels=app.core.config.drop_list, axis=1)
 
     # Cleanup the data
     df_atp["Winner"] = df_atp["Winner"].str.strip()
     df_atp["Loser"] = df_atp["Loser"].str.strip()
 
-    df_atp["Winner"] = df_atp["Winner"].replace(core.config.correction_list)
-    df_atp["Loser"] = df_atp["Loser"].replace(core.config.correction_list)
+    df_atp["Winner"] = df_atp["Winner"].replace(app.core.config.correction_list)
+    df_atp["Loser"] = df_atp["Loser"].replace(app.core.config.correction_list)
 
     df_atp["Best of"] = pd.to_numeric(
         df_atp["Best of"], errors="coerce", downcast="integer"
@@ -214,7 +214,7 @@ def fetch():
 
 
 def load():
-    return pd.read_csv("archive/elo_rates_enriched.csv", index_col=0)
+    return pd.read_csv("app/archive/elo_rates_enriched.csv", index_col=0)
 
 
 def get_feats(
@@ -327,7 +327,13 @@ def get_feats(
         )
     )
 
-    return scaler.transform(X_unscaled)
+    X_unscaled = X_unscaled[app.core.config.features_list]
+
+    return pd.DataFrame(
+        data=scaler.transform(X_unscaled),
+        columns=app.core.config.features_list,
+        index=[0],
+    )
 
 
 def get_advise(input: dict | pd.DataFrame, platform: str = "PS") -> pd.DataFrame:
@@ -335,10 +341,10 @@ def get_advise(input: dict | pd.DataFrame, platform: str = "PS") -> pd.DataFrame
     if isinstance(input, dict):
         input = pd.DataFrame(input)
 
-    if set(core.config.features_list) - set(input.columns.tolist()):
+    if set(app.core.config.features_list) - set(input.columns.tolist()):
         raise ValueError(f"wrong input format")
 
-    X = input[core.config.features_list]
+    X = input[app.core.config.features_list]
 
     if platform == "PS":
         df_result = pd.DataFrame(
