@@ -2,7 +2,7 @@ version: "3.3"
 
 services:
   advise:
-    image: tennis-bet-api
+    image: st1991/tennis-bet
     build: 
       context: .
       dockerfile: Dockerfile
