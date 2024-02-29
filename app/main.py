@@ -1,56 +1,66 @@
-import core.utils
+import app.core.utils
 import fastapi
 import uvicorn
 
-app = fastapi.FastAPI()
+api = fastapi.FastAPI()
 
 
-@app.get("/")
+@api.get("/")
 async def root():
-    return "The app is up"
+    return "The application is up"
 
 
-@app.get("/fetch")
+@api.get("/fetch")
 async def fetch():
     try:
-        core.utils.fetch()
+        app.core.utils.fetch()
     except:
         raise fastapi.HTTPException(status_code=500, detail="Something went wrong")
 
 
-@app.post("/advise")
+@api.post("/advise")
 async def advise(p1: str, p2: str, field_type: str):
     try:
-        elo_rates = core.utils.load()
-        advise = core.utils.get_feats(
+        elo_rates = app.core.utils.load()
+        feats = app.core.utils.get_feats(
             P1_name=p1, P2_name=p2, field_type=field_type, elo_rates=elo_rates
         )
+        df_advise = app.core.utils.get_advise(input=feats).fillna(value="None")
         return {
-            "advise": advise["advise"].values[0],
-            "predict_P1_wins": advise["predict_P1_wins"].values[0],
-            "certainty": advise["certainty"].values[0],
+            "advise": df_advise["advise"].values[0],
+            "predicted_winner": df_advise["predict_P1_wins"]
+            .replace({True: p1, False: p2})
+            .values[0],
+            "certainty": round(df_advise["certainty"].values[0] * 100, 1),
         }
-    except:
-        raise fastapi.HTTPException(status_code=500, detail="Something went wrong")
+    except Exception as err:
+        raise fastapi.HTTPException(
+            status_code=500, detail=f"Something went wrong: {err}"
+        )
 
 
-@app.post("/fetch_advise")
+@api.post("/fetch_advise")
 async def fetch_advise(p1: str, p2: str, field_type: str):
     try:
-        elo_rates = core.utils.fetch()
-        advise = core.utils.get_feats(
+        elo_rates = app.core.utils.fetch()
+        feats = app.core.utils.get_feats(
             P1_name=p1, P2_name=p2, field_type=field_type, elo_rates=elo_rates
         )
+        df_advise = app.core.utils.get_advise(input=feats).fillna(value="None")
         return {
-            "advise": advise["advise"].values[0],
-            "predict_P1_wins": advise["predict_P1_wins"].values[0],
-            "certainty": advise["certainty"].values[0],
+            "advise": df_advise["advise"].values[0],
+            "predicted_winner": df_advise["predict_P1_wins"]
+            .replace({True: p1, False: p2})
+            .values[0],
+            "certainty": round(df_advise["certainty"].values[0] * 100, 1),
         }
-    except:
-        raise fastapi.HTTPException(status_code=500, detail="Something went wrong")
+    except Exception as err:
+        raise fastapi.HTTPException(
+            status_code=500, detail=f"Something went wrong: {err}"
+        )
 
 
 if __name__ == "__main__":
-    config = uvicorn.Config("main:app", port=80, log_level="info")
+    config = uvicorn.Config("main:api", port=80, log_level="info")
     server = uvicorn.Server(config)
     server.run()
