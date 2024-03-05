@@ -47,7 +47,7 @@ In the following work, we aim to design a machine learning model, employing stan
 %
 \begin{enumerate}
 \item Predicts tennis matches with high accuracy.
-\item Yields a net plus when betting money on tennis matches on bet365.com and pinnacle.com
+\item Yields a net plus when betting money on tennis matches on \href{https://bet365.com/}{Bet 365} and \href{https://pinnacle.com/}{Pinnacle}.
 with their respective odds.
 \end{enumerate}
 %
@@ -73,13 +73,37 @@ Goals
 
 \subsection{Data fetch}
 
-Our initial data set consist of ATP matches from 2000 until 2018 fetched from \href{https://www.kaggle.com/datasets/edouardthomas/atp-matches-dataset}{Kaggle.com}. This Dataset is provided by Eduard Thomas to Kaggle.com. Since our initial data frame was fairly outdated and were missing a lot of odds for the years 2000 till 2003 we fetched new data from \href{http://tennis-data.co.uk/}{tennis-data} and deleted all the data with missing data for the odds. This resulted in a data frame consisting of data from 2004 until 2024.
+Our initial data set consist of ATP matches from 2000 until 2018 fetched from \href{https://www.kaggle.com/datasets/edouardthomas/atp-matches-dataset}{Kaggle}. This Dataset is provided by Eduard Thomas to Kaggle.com. Since our initial data frame was fairly outdated and were missing a lot of odds for the years 2000 till 2003 we fetched new data from \href{http://tennis-data.co.uk/}{tennis-data} and deleted all the data with missing data for the odds. This resulted in a data frame consisting of data from 2004 until 2024.
 
 \subsection{Data enrichment \& cleaning}
 Which parts of data dropped or added?
 
 \subsection{Data statistics and visualisations}
-Put graphs and statistics of the data here, like \ref{ps-odds-dist}.
+
+%Put graphs and statistics of the data here, like \ref{ps-odds-dist}.
+Our dataset consists of $48,824$ tennis matches involving $1,283$ unique male players from January~5,~2004, until February~4,~2024 (Figure \ref{match-count-year-dist}). From 2004 to 2023, we observe an average of approximately $2,500$ games per year. Notably, in 2020, only about $1,450$ games were played due to Covid-19 restrictions. Furthermore, the data belonging to year 2009 is missing. That is because the bet odds of Pinnacle sports is not recorded in our data source, hence the related data is droped all together in cleaning procces.
+%
+\begin{figure}[h]
+\includegraphics[width=\textwidth]{pictures/match-count-year-dist.pdf}
+\caption{Number of matches held on each year}
+\label{match-count-year-dist}
+\end{figure}
+%
+One of the most important metrics for assessing the performance of individual players in tennis is the Elo rating. The distribution of Elo ratings on the ATP tours reveals that the median rating is $1640$ (Figure \ref{elo-rates-dist}). Interestingly, only one player (N. Djokovic) has an Elo rate exceeding $2000$ (Figure \ref{top-10-elo-rates}).
+%
+\begin{figure}[h]
+\includegraphics[width=\textwidth]{pictures/elo-rates-dist.pdf}
+\caption{Distribution of Elo rates}
+\label{elo-rates-dist}
+\end{figure}
+%
+%
+\begin{figure}[h]
+\includegraphics[width=\textwidth]{pictures/top-10-elo-rates.pdf}
+\caption{Top 10 players with highest Elo rates}
+\label{top-10-elo-rates}
+\end{figure}
+%
 %
 \begin{figure}[h]
 \includegraphics[width=\textwidth]{pictures/ps-odds-dist.pdf}
@@ -96,23 +120,16 @@ Put graphs and statistics of the data here, like \ref{ps-odds-dist}.
 %
 %
 \begin{figure}[h]
-\includegraphics[width=\textwidth]{pictures/elo-rates-atp-point-dist.pdf}
-\caption{Distribution of elo rates and atp points}
-\label{elo-rates-atp-point-dist}
+\includegraphics[width=\textwidth]{pictures/atp-point-dist.pdf}
+\caption{Distribution of atp points}
+\label{atp-point-dist}
 \end{figure}
 %
 %
 \begin{figure}[h]
 \includegraphics[width=\textwidth]{pictures/match-count-field-type-dist.pdf}
-\caption{Distribution of Pinnacle Sports Winner/Loser Odds.}
+\caption{Total number of matches held on each court/surface type}
 \label{match-count-field-type-dist}
-\end{figure}
-%
-%
-\begin{figure}[h]
-\includegraphics[width=\textwidth]{pictures/top-10-elo-rates.pdf}
-\caption{Distribution of Pinnacle Sports Winner/Loser Odds.}
-\label{top-10-elo-rates}
 \end{figure}
 %
 %
