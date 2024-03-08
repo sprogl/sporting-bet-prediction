@@ -320,7 +320,7 @@ To assess whether using a surface-specific data frame (``feature'') is the best 
 \end{figure}
 %
 
-The images (Figure \ref{most-important-da}, \ref{most-important-gb}, \ref{most-important-rf}, \ref{most-important-df} ) indicate that all machine learning algorithms used share a common set of important features for predicting the target variable ``Player A wins''. Notably, across all features presented to the algorithms, the odds from Pinnacle Sports appear to be the most influential, followed by the individual win-per-match ratio (see Table \ref{top-10-features-table}). Additionally, the win-match ratio on the four different surfaces emerges as particularly significant in predicting the outcome of a tennis match.
+The images (Figure \ref{most-important-ada}, \ref{most-important-gb}, \ref{most-important-rf}, \ref{most-important-df} ) indicate that all machine learning algorithms used share a common set of important features for predicting the target variable ``Player A wins''. Notably, across all features presented to the algorithms, the odds from Pinnacle Sports appear to be the most influential, followed by the individual win-per-match ratio (see Table \ref{top-10-features-table}). Additionally, the win-match ratio on the four different surfaces emerges as particularly significant in predicting the outcome of a tennis match.
 
 %
 \begin{figure}[h]
@@ -388,7 +388,7 @@ The accuracy scores of all four standard ML algorithms, trained with their 20 mo
 \label{accuracy-score-models}
 \end{figure}
 
-To verify the calculated accuracy score for each model, we generated a confusion matrix for each (Figure \ref{confusion-matrix}). The data within the confusion matrices are consistent with the accuracy scores obtained. Approximately $75 \%$ of the matches are correctly predicted (either Player A wins or loses), while about $2 \%$ are wrongly predicted. There is no observable tendency indicating that the algorithm favors one outcome over the ot 
+To verify the calculated accuracy score for each model, we generated a confusion matrix for each (Figure \ref{confusion-matrix}). The data within the confusion matrices are consistent with the accuracy scores obtained. Approximately $75 \%$ of the matches are correctly predicted (either Player A wins or loses), while about $2 \%$ are wrongly predicted. There is no observable tendency indicating that the algorithm favors one outcome over the other.
 %
 \begin{figure}[h]
 \includegraphics[width=\textwidth]{pictures/confusion-matrix.png}
