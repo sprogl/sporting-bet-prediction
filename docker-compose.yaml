@@ -1,0 +1,17 @@
+version: "3.3"
+
+services:
+  advise:
+    image: st1991/tennis-bet
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: ${CONTAINER_NAME:-tennis-bet-advise-engine}
+    restart: always
+    ports:
+      - 80:80
+    volumes:
+      - bet_data:/code/app/archive
+
+volumes:
+  bet_data:

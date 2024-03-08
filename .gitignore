@@ -1,2 +1,16 @@
 sport-bet
-env
+
+# Python enviroment directory
+.venv
+
+# Python cahce directories
+app/__pycache__
+app/core/__pycache__
+
+# Latex extra files
+report/final/*.bib
+report/final/*.gz
+report/final/*.out
+report/final/*.log
+report/final/*.toc
+report/final/*.aux
