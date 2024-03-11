@@ -1,0 +1,24 @@
+\contentsline {title}{Tennis match forecasting; how AI can beat book makers on their own platforms}{1}{section*.1}%
+\tocdepth@munge 
+\contentsline {section}{\numberline {}Contents}{2}{section*.2}%
+\tocdepth@restore 
+\contentsline {section}{\numberline {I}Introduction}{3}{section*.3}%
+\contentsline {subsection}{\numberline {A}Elo system}{4}{section*.4}%
+\contentsline {subsection}{\numberline {B}Objectives}{6}{section*.5}%
+\contentsline {section}{\numberline {II}Exploratory data analysis (EDA)}{7}{section*.6}%
+\contentsline {subsection}{\numberline {A}Data fetch}{7}{section*.7}%
+\contentsline {subsection}{\numberline {B}Data enrichment \& cleaning}{7}{section*.8}%
+\contentsline {subsection}{\numberline {C}Data statistics and visualisations}{9}{section*.9}%
+\contentsline {subsection}{\numberline {D}Strategies}{11}{section*.10}%
+\contentsline {subsection}{\numberline {E}Feature selection}{15}{section*.11}%
+\contentsline {section}{\numberline {III}ML models and learning}{19}{section*.12}%
+\contentsline {subsection}{\numberline {A}Model selection}{20}{section*.13}%
+\contentsline {subsection}{\numberline {B}Random forest}{20}{section*.14}%
+\contentsline {subsection}{\numberline {C}Ada boost}{22}{section*.15}%
+\contentsline {subsection}{\numberline {D}Support vector Machine}{25}{section*.16}%
+\contentsline {subsection}{\numberline {E}Voting}{27}{section*.17}%
+\contentsline {subsection}{\numberline {F}Dense neural network}{29}{section*.18}%
+\contentsline {subsection}{\numberline {G}Exploring alternative models \& important features}{31}{section*.19}%
+\contentsline {subsection}{\numberline {H}Betting with the prediction model}{36}{section*.20}%
+\contentsline {section}{\numberline {IV}Conclusion}{37}{section*.21}%
+\appendix 
