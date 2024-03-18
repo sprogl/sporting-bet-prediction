@@ -223,61 +223,61 @@ def get_feats(
     X_unscaled = pd.DataFrame(
         {
             "P1_wins_proba_elo": 0.0,
-            "P1_match_count": elo_rates.loc[
-                elo_rates["Player"] == P1_name, "match_count"
-            ].values[0],
+            # "P1_match_count": elo_rates.loc[
+            #     elo_rates["Player"] == P1_name, "match_count"
+            # ].values[0],
             "P2_match_count": elo_rates.loc[
                 elo_rates["Player"] == P2_name, "match_count"
             ].values[0],
             "P1_pts": elo_rates.loc[elo_rates["Player"] == P1_name, "pts"].values[0],
             "P2_pts": elo_rates.loc[elo_rates["Player"] == P2_name, "pts"].values[0],
             "field_type==indoor_hard": 1.0 if field_type == "indoor_hard" else 0.0,
-            "P1_match_count_indoor_hard": elo_rates.loc[
-                elo_rates["Player"] == P1_name, "match_count_indoor_hard"
-            ].values[0],
-            "P2_match_count_indoor_hard": elo_rates.loc[
-                elo_rates["Player"] == P2_name, "match_count_indoor_carpet"
-            ].values[0],
+            # "P1_match_count_indoor_hard": elo_rates.loc[
+            #     elo_rates["Player"] == P1_name, "match_count_indoor_hard"
+            # ].values[0],
+            # "P2_match_count_indoor_hard": elo_rates.loc[
+            #     elo_rates["Player"] == P2_name, "match_count_indoor_carpet"
+            # ].values[0],
             "P1_wins_proba_elo_indoor_hard": 0.0,
-            "field_type==indoor_carpet": 1.0 if field_type == "indoor_carpet" else 0.0,
-            "P1_match_count_indoor_carpet": elo_rates.loc[
-                elo_rates["Player"] == P1_name, "match_count_indoor_carpet"
-            ].values[0],
-            "P2_match_count_indoor_carpet": elo_rates.loc[
-                elo_rates["Player"] == P2_name, "match_count_indoor_carpet"
-            ].values[0],
-            "P1_wins_proba_elo_indoor_carpet": 0.0,
-            "field_type==indoor_clay": 1.0 if field_type == "indoor_clay" else 0.0,
-            "P1_match_count_indoor_clay": elo_rates.loc[
-                elo_rates["Player"] == P1_name, "match_count_indoor_clay"
-            ].values[0],
-            "P2_match_count_indoor_clay": elo_rates.loc[
-                elo_rates["Player"] == P2_name, "match_count_indoor_clay"
-            ].values[0],
-            "P1_wins_proba_elo_indoor_clay": 0.0,
+            # "field_type==indoor_carpet": 1.0 if field_type == "indoor_carpet" else 0.0,
+            # "P1_match_count_indoor_carpet": elo_rates.loc[
+            #     elo_rates["Player"] == P1_name, "match_count_indoor_carpet"
+            # ].values[0],
+            # "P2_match_count_indoor_carpet": elo_rates.loc[
+            #     elo_rates["Player"] == P2_name, "match_count_indoor_carpet"
+            # ].values[0],
+            # "P1_wins_proba_elo_indoor_carpet": 0.0,
+            # "field_type==indoor_clay": 1.0 if field_type == "indoor_clay" else 0.0,
+            # "P1_match_count_indoor_clay": elo_rates.loc[
+            #     elo_rates["Player"] == P1_name, "match_count_indoor_clay"
+            # ].values[0],
+            # "P2_match_count_indoor_clay": elo_rates.loc[
+            #     elo_rates["Player"] == P2_name, "match_count_indoor_clay"
+            # ].values[0],
+            # "P1_wins_proba_elo_indoor_clay": 0.0,
             "field_type==outdoor_hard": 1.0 if field_type == "outdoor_hard" else 0.0,
-            "P1_match_count_outdoor_hard": elo_rates.loc[
-                elo_rates["Player"] == P1_name, "match_count_outdoor_hard"
-            ].values[0],
-            "P2_match_count_outdoor_hard": elo_rates.loc[
-                elo_rates["Player"] == P2_name, "match_count_outdoor_hard"
-            ].values[0],
+            # "P1_match_count_outdoor_hard": elo_rates.loc[
+            #     elo_rates["Player"] == P1_name, "match_count_outdoor_hard"
+            # ].values[0],
+            # "P2_match_count_outdoor_hard": elo_rates.loc[
+            #     elo_rates["Player"] == P2_name, "match_count_outdoor_hard"
+            # ].values[0],
             "P1_wins_proba_elo_outdoor_hard": 0.0,
             "field_type==outdoor_clay": 1.0 if field_type == "outdoor_clay" else 0.0,
-            "P1_match_count_outdoor_clay": elo_rates.loc[
-                elo_rates["Player"] == P1_name, "match_count_outdoor_clay"
-            ].values[0],
-            "P2_match_count_outdoor_clay": elo_rates.loc[
-                elo_rates["Player"] == P2_name, "match_count_outdoor_clay"
-            ].values[0],
+            # "P1_match_count_outdoor_clay": elo_rates.loc[
+            #     elo_rates["Player"] == P1_name, "match_count_outdoor_clay"
+            # ].values[0],
+            # "P2_match_count_outdoor_clay": elo_rates.loc[
+            #     elo_rates["Player"] == P2_name, "match_count_outdoor_clay"
+            # ].values[0],
             "P1_wins_proba_elo_outdoor_clay": 0.0,
             "field_type==outdoor_grass": 1.0 if field_type == "outdoor_grass" else 0.0,
-            "P1_match_count_outdoor_grass": elo_rates.loc[
-                elo_rates["Player"] == P1_name, "match_count_outdoor_grass"
-            ].values[0],
-            "P2_match_count_outdoor_grass": elo_rates.loc[
-                elo_rates["Player"] == P2_name, "match_count_outdoor_grass"
-            ].values[0],
+            # "P1_match_count_outdoor_grass": elo_rates.loc[
+            #     elo_rates["Player"] == P1_name, "match_count_outdoor_grass"
+            # ].values[0],
+            # "P2_match_count_outdoor_grass": elo_rates.loc[
+            #     elo_rates["Player"] == P2_name, "match_count_outdoor_grass"
+            # ].values[0],
             "P1_wins_proba_elo_outdoor_grass": 0.0,
         },
         index=[0],
@@ -287,8 +287,8 @@ def get_feats(
         [
             "P1_wins_proba_elo",
             "P1_wins_proba_elo_indoor_hard",
-            "P1_wins_proba_elo_indoor_carpet",
-            "P1_wins_proba_elo_indoor_clay",
+            # "P1_wins_proba_elo_indoor_carpet",
+            # "P1_wins_proba_elo_indoor_clay",
             "P1_wins_proba_elo_outdoor_hard",
             "P1_wins_proba_elo_outdoor_clay",
             "P1_wins_proba_elo_outdoor_grass",
@@ -304,8 +304,8 @@ def get_feats(
                     [
                         "elo",
                         "elo_indoor_hard",
-                        "elo_indoor_carpet",
-                        "elo_indoor_clay",
+                        # "elo_indoor_carpet",
+                        # "elo_indoor_clay",
                         "elo_outdoor_hard",
                         "elo_outdoor_clay",
                         "elo_outdoor_grass",
@@ -316,8 +316,8 @@ def get_feats(
                     [
                         "elo",
                         "elo_indoor_hard",
-                        "elo_indoor_carpet",
-                        "elo_indoor_clay",
+                        # "elo_indoor_carpet",
+                        # "elo_indoor_clay",
                         "elo_outdoor_hard",
                         "elo_outdoor_clay",
                         "elo_outdoor_grass",
